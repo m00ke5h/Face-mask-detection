@@ -12,6 +12,7 @@ from sklearn.metrics import classification_report
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+from PIL import Image
 
 # initialize the initial learning rate, number of epochs to train for,
 # and batch size
@@ -19,7 +20,7 @@ INIT_LR = 1e-4
 EPOCHS = 20
 BS = 32
 
-DIRECTORY = "Face-Mask-Detection-master/dataset"
+DIRECTORY = "dataset"
 CATEGORIES = ["with_mask", "without_mask"]
 
 # grab the list of images in our dataset directory, then initialize
@@ -110,7 +111,7 @@ print(classification_report(testY.argmax(axis=1), predIdxs,
 
 # serialize the model to disk
 print("[INFO] saving mask detector model...")
-model.save("mask_detector.model", save_format="h5")
+model.save("models/mask_detector.model", save_format="h5")
 
 # plot the training loss and accuracy
 N = EPOCHS
@@ -124,4 +125,4 @@ plt.title("Training Loss and Accuracy")
 plt.xlabel("Epoch #")
 plt.ylabel("Loss/Accuracy")
 plt.legend(loc="lower left")
-plt.savefig("plot.png")
+plt.savefig("graph/plot.png")
